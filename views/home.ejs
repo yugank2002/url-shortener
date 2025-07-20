@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header class="header">
+        <h1>URL Shortener</h1>
+    </header>
+
+    <main class="main-content">
+        <section class="form-section">
+            <form method="POST" action="/url">
+                <label for="url">Enter the URL to make it short:</label>
+                <input type="text" name="originalURL" id="url" placeholder="Enter URL here" required>
+                <button type="submit">Generate</button>
+                <p class="form-note">(Make sure to input the full URL, e.g., https://www.example.com)</p>
+            </form>
+            <% if (locals.newURL) { %>
+            <div class="short-url">
+                <p>Short URL: <a href="<%= locals.newURL %>"><%= locals.newURL %></a></p>
+            </div>
+            <% } %>
+        </section>
+
+        <section class="table-section">
+            <% if (locals.user) { %>
+            <h2>URL Statistics</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sr. No.</th>
+                        <th>Original URL</th>
+                        <th>Short URL</th>
+                        <th>No. of Clicks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% locals.user.forEach((user, index) => { %>
+                    <tr>
+                        <td><%= index + 1 %></td>
+                        <td><%= user.originalURL %></td>
+                        <td><a href="http://localhost:3000/url/<%= user.shortID %>">http://localhost:3000/url/<%= user.shortID %></a></td>
+                        <td><%= user.visited.length %></td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+            <% } %>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 URL Shortener. All rights reserved.</p>
+    </footer>
+</body>
+</html>
