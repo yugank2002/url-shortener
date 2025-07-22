@@ -18,7 +18,8 @@ const handleShortURL = async(req,res)=>{
     await URL.create({
         shortID: id,
         originalURL: requestedURL,
-        visited:[]
+        visited:[],
+        createdBy: req.user._id
     })
 
     return res.status(200).render('home', {
