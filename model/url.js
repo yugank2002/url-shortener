@@ -20,7 +20,12 @@ const urlSchema = mongoose.Schema({
     createdBy:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
+    },
+    createdByName:{
+        type: String,
+        required: true
     }
+
 
 })
 

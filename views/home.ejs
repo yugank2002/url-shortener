@@ -82,6 +82,8 @@
       padding: 1rem;
       position: relative;
       z-index: 2;
+      border-radius: 10px;
+      box-shadow: 5px 2px 10px rgba(43, 43, 43, 0.692);
     }
 
     .main-content {
@@ -90,6 +92,32 @@
       position: relative;
       max-height: calc(100vh - 120px);
       overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      
+    }
+
+    .form-section{
+      max-width: 50vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      
+      .one{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      
+    }
+    
+    .table-section {
+      width: 100%;
+      height:fit-content;
+     
     }
 
     .form-section, .table-section {
@@ -218,7 +246,7 @@
 
   <main class="main-content">
     <section class="form-section">
-      <form method="POST" action="/url">
+      <form class="one" method="POST" action="/url">
         <label for="url">Enter the URL to make it short:</label>
         <input type="text" name="originalURL" id="url" placeholder="https://www.example.com" required />
         <button type="submit">Generate</button>

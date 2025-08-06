@@ -9,17 +9,13 @@ const handleShortURL = async(req,res)=>{
     if(!requestedURL){
         return res.status(400).json({error: 'URL is required'});
     }
-    const existingURL = await URL.findOne({originalURL: requestedURL});
-    if(existingURL){
-        return res.status(200).render('home', {
-            newURL: `http://localhost:3000/url/${existingURL.shortID}`
-        });
-    }
+    
     await URL.create({
         shortID: id,
         originalURL: requestedURL,
         visited:[],
-        createdBy: req.user._id
+        createdBy: req.user._id,
+        createdByName: req.user.email
     })
 
     return res.status(200).render('home', {

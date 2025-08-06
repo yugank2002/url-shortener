@@ -1,0 +1,18 @@
+const router = require('express').Router();
+const {URL} = require('../model/url');
+const {User} = require('../model/user');
+const {getUser} = require('../services/auth');
+
+router.get('/', async(req,res) =>{
+    
+
+    const users = await User.find({});
+    const urls = await URL.find({});
+    res.render('admin', {
+        title: 'Admin Portal',
+        users: users,
+        urls: urls
+    });
+})
+
+module.exports = router;
