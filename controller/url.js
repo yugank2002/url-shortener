@@ -19,7 +19,8 @@ const handleShortURL = async(req,res)=>{
     })
 
     return res.status(200).render('home', {
-        newURL: `http://localhost:3000/url/${id}`
+        newURL: `${req.protocol + "://" + req.get('host')}/url/${id}`
+        
     })
 }
 

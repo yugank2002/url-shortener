@@ -282,9 +282,10 @@
             <td><%= index + 1 %></td>
             <td><%= user.originalURL %></td>
             <td>
-              <a href="http://localhost:3000/url/<%= user.shortID %>">
-                http://localhost:3000/url/<%= user.shortID %>
+             <a href="<%= baseURL %>/url/<%= user.shortID %>">
+                <%= baseURL %>/url/<%= user.shortID %>
               </a>
+
             </td>
             <td><%= user.visited.length %></td>
           </tr>

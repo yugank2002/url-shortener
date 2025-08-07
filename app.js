@@ -27,6 +27,14 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 
+app.use((req, res, next) => {
+    res.locals.baseURL = req.protocol + "://" + req.get('host');
+    next();
+});
+
+
+
+
 app.use('/',checkAuthentication, staticRoute);
 app.use('/auth', authRouter);
 app.use('/url', restrictToLoggedInUsersOnly , urlRouter);
